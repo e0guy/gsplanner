@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base do projeto */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #03040b;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* Fundo com linhas e brilho roxo parecido com a referência enviada */
+.hero-bg {
+  background:
+    radial-gradient(circle at 78% 8%, rgba(98, 0, 255, .48), transparent 30%),
+    radial-gradient(circle at 47% 42%, rgba(93, 20, 180, .30), transparent 26%),
+    radial-gradient(circle at 14% 8%, rgba(37, 12, 82, .28), transparent 30%),
+    linear-gradient(180deg, #060712 0%, #02030A 100%);
+  position: relative;
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(115deg, transparent 0 48%, rgba(124,58,237,.23) 49%, transparent 50%),
+    linear-gradient(155deg, transparent 0 56%, rgba(124,58,237,.16) 57%, transparent 58%),
+    radial-gradient(circle at 88% 0%, rgba(168,85,247,.18), transparent 20%);
+  opacity: .75;
+  pointer-events: none;
+}
+
+/* Reutilizado nos cards com borda translúcida */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+  border: 1px solid rgba(139, 92, 246, .22);
+  box-shadow: 0 28px 90px rgba(0,0,0,.38);
+  backdrop-filter: blur(18px);
+}
+
+/* Botão principal com brilho */
+.primary-btn {
+  background: linear-gradient(135deg, #8B5CF6, #5B21B6);
+  box-shadow: 0 18px 50px rgba(124,58,237,.42);
+}
+
+/* Carrossel dos logos do hero */
+@keyframes brandMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.brand-track {
+  animation: brandMove 26s linear infinite;
+}
+
+/* Movimento leve dos mockups */
+@keyframes floatPhone {
+  0%, 100% { transform: translateY(0) rotate(3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.float-phone { animation: floatPhone 5s ease-in-out infinite; }
+
+@keyframes floatWatch {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(10px) rotate(-2deg); }
+}
+
+.float-watch { animation: floatWatch 5.5s ease-in-out infinite; }
+
+/* Responsividade fina */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .hero-title { font-size: 2.8rem; }
+}
+
+
+/* =========================================================
+   AJUSTE COMPACTO PREMIUM
+   Reduz tamanho geral sem perder o padrão visual.
+   ========================================================= */
+:root { --container-max: 1280px; --section-y: 72px; }
+.compact-container { max-width: var(--container-max); }
+.hero-title { font-size: clamp(2.7rem, 5vw, 4.9rem) !important; line-height: 1.04 !important; }
+.compact-section { padding-top: var(--section-y) !important; padding-bottom: var(--section-y) !important; }
+.compact-card { padding: 1.35rem !important; }
+.compact-text { font-size: .95rem !important; line-height: 1.75 !important; }
+.compact-heading { font-size: clamp(2rem, 3.5vw, 3.1rem) !important; line-height: 1.12 !important; }
+.mockup-scale { transform: scale(.86); transform-origin: center; }
+.phone-scale { transform: scale(.82); transform-origin: center; }
+.watch-scale { transform: scale(.82); transform-origin: center; }
+.hero-visual-wrap { min-height: 470px; }
+@media (max-width: 1280px) {
+  .mockup-scale { transform: scale(.78); }
+  .phone-scale, .watch-scale { transform: scale(.72); }
+  .hero-visual-wrap { min-height: 420px; }
+}
+@media (max-width: 1024px) {
+  :root { --section-y: 64px; }
+  .mockup-scale { transform: scale(.92); }
+  .phone-scale, .watch-scale { display: none !important; }
+  .hero-visual-wrap { min-height: auto; }
+}
+@media (max-width: 640px) {
+  :root { --section-y: 54px; }
+  .hero-title { font-size: clamp(2.3rem, 11vw, 3.15rem) !important; }
+  .mockup-scale { transform: scale(1); }
+}
