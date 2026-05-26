@@ -1,6 +1,6 @@
 {
-  "installCommand": "npm ci --legacy-peer-deps --no-audit --no-fund",
-  "buildCommand": "npm run build",
+  "installCommand": "echo Install skipped - using committed dist",
+  "buildCommand": "echo Build skipped - using committed dist",
   "outputDirectory": "dist",
-  "framework": "vite"
+  "framework": null
 }
